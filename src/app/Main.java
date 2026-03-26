@@ -1,5 +1,8 @@
 package app;
 
+import service.BankService;
+import service.impl.BankServiceImpl;
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -19,22 +22,58 @@ public class Main {
                 0. Exit
                 """);
             Scanner input = new Scanner(System.in);
+            BankService bankService = new BankServiceImpl();
             System.out.println("Kindly choose your preferences : " );
-            int choice = input.nextInt();
+            String choice = input.nextLine().trim();
             switch (choice) {
-                case 0 -> run = false;
+                case "1" -> openAccount(input,bankService);
+                case "2" -> deposit(input);
+                case "3" -> withdraw(input);
+                case "4" -> transfer(input);
+                case "5" -> accountStatement(input);
+                case "6" -> listOfAccounts(input,bankService);
+                case "7" -> searchAccounts(input);
+                case "0" -> run = false;
 
             }
         }
 
-//        switch (choice) {
-//            case 1 -> System.out.println("Opening account is in process.");
-//            case 2 -> System.out.println("Put amount to deposit");
-//            case 3 -> System.out.println("Deposit is in process.");
-//            case 4 -> System.out.println("Deposit is in process.");
-//            case 5 -> System.out.println("Deposit is in process.");
-//        }
-
-
     }
+
+
+    private static void openAccount(Scanner input, BankService bankService) {
+        System.out.println("Enter Your Name : ");
+        String name = input.nextLine().trim();
+        System.out.println("Enter Your Email : ");
+        String email = input.nextLine().trim();
+        System.out.println("Enter account type (SAVINGS/CURRENT): ");
+        String type = input.nextLine().trim();
+        System.out.println("Initial deposit(optional, blank for 0): ");
+        double initialDeposit = input.nextDouble();
+        bankService.openAccount(name,email,type);
+    }
+
+    private static void deposit(Scanner input) {
+    }
+
+    private static void withdraw(Scanner input) {
+    }
+
+    private static void transfer(Scanner input) {
+    }
+
+    private static void accountStatement(Scanner input) {
+    }
+
+    private static void listOfAccounts(Scanner input, BankService bankService) {
+        bankService.listOfAccounts().forEach(a -> {
+            System.out.println(a.getAccountNumber() + " | "+ a.getAccountType()+" : "
+            + a.getBalance());
+        });
+    }
+
+    private static void searchAccounts(Scanner input) {
+    }
+
+
 }
