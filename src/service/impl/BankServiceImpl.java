@@ -25,7 +25,7 @@ public class BankServiceImpl implements BankService {
     @Override
     public List<Account> listOfAccounts() {
         return accountRepository.findAll().stream()
-                .sorted(Comparator.comparing(Account :: getAccountNumber))
+                .sorted(Comparator.comparing(Account::getAccountNumber))
                 .collect(Collectors.toList());
     }
 
