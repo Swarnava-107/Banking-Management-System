@@ -5,42 +5,18 @@ import java.time.LocalDateTime;
 public class Transaction {
     private String id;
     private Type type;
-    private double amount;
     private String accountNumber;
-    private LocalDateTime transactionDate;
+    private Double amount;
+    private LocalDateTime timestamp;
     private String note;
 
-    public Transaction(String id, Type type, double amount, String accountNumber, LocalDateTime transactionDate, String note) {
-        this.id = id;
-        this.type = type;
-        this.amount = amount;
+    public Transaction(String accountNumber, Double amount, String id, String note, LocalDateTime timestamp, Type type) {
         this.accountNumber = accountNumber;
-        this.transactionDate = transactionDate;
-        this.note = note;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
         this.amount = amount;
+        this.id = id;
+        this.note = note;
+        this.timestamp = timestamp;
+        this.type = type;
     }
 
     public String getAccountNumber() {
@@ -51,12 +27,20 @@ public class Transaction {
         this.accountNumber = accountNumber;
     }
 
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNote() {
@@ -65,5 +49,21 @@ public class Transaction {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }
